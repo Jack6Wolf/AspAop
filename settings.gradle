@@ -1,0 +1,3 @@
+include ':aspaop'
+include ':app'
+rootProject.name = "AopDemo"
