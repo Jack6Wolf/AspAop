@@ -55,12 +55,12 @@ public class DemotionAspect {
         //如果当前手机等级小于等于规定的降级等级不执行这段代码
         if (AspAop.init().getMemoryLevel() <= needDemotion.value()) {
             //类名
-            String className = methodSignature.getDeclaringType().getSimpleName();
+            String className = methodSignature.getDeclaringTypeName();
             //方法名
             String methodName = methodSignature.getName();
             Log.w(TAG, String.format("%s的%s方法被降级了，不执行!", className, methodName));
             if (AspAop.init().getCallback() != null) {
-                AspAop.init().getCallback().demotion(methodSignature);
+                AspAop.init().getCallback().demotion(methodSignature,joinPoint.getArgs());
             }
             return null;
         } else {

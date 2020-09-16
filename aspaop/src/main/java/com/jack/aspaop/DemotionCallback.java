@@ -11,6 +11,7 @@ import org.aspectj.lang.reflect.MethodSignature;
 public interface DemotionCallback {
     /**
      * @param signature 降级标记的该方法的签名函数，从中可以获取该method的相关信息参数...
+     * @param args      方法的参数对象
      */
-    void demotion(MethodSignature signature);
+    void demotion(MethodSignature signature, Object[] args);
 }

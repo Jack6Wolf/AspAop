@@ -12,6 +12,15 @@ import com.jack.aspaop.annotation.NeedDemotion;
 
 public class MainActivity extends AppCompatActivity {
 
+    @SuppressLint("SupportAnnotationUsage")
+    @NeedDemotion(NeedDemotion.LEVEL_6)
+    private static boolean test(int i, boolean flag) {
+        boolean is = true;
+        Toast.makeText(App.getContext(), "点击了我", Toast.LENGTH_SHORT).show();
+        is = false;
+        return is;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,17 +28,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void click(View view) {
-        boolean test = test();
-        Log.e("JACK", test + "");
-    }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                boolean test = test(1, false);
+                Log.e("JACK", test + Thread.currentThread().getName());
+            }
+        }).start();
 
-    @SuppressLint("SupportAnnotationUsage")
-    @NeedDemotion(NeedDemotion.LEVEL_6)
-    private boolean test() {
-        boolean is = true;
-        Toast.makeText(this, "点击了我", Toast.LENGTH_SHORT).show();
-        is = false;
-        return is;
     }
 
     public void click1(View view) {

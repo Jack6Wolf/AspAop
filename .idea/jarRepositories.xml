@@ -31,5 +31,25 @@
       <option name="name" value="MavenLocal" />
       <option name="url" value="file:/$MAVEN_REPOSITORY$/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven" />
+      <option name="name" value="maven" />
+      <option name="url" value="https://jitpack.io" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="C:\SDK\android-sdk-windows\android-sdk-windows\extras\m2repository" />
+      <option name="name" value="C:\SDK\android-sdk-windows\android-sdk-windows\extras\m2repository" />
+      <option name="url" value="file:/C:/SDK/android-sdk-windows/android-sdk-windows/extras/m2repository" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="C:\SDK\android-sdk-windows\android-sdk-windows\extras\android\m2repository" />
+      <option name="name" value="C:\SDK\android-sdk-windows\android-sdk-windows\extras\android\m2repository" />
+      <option name="url" value="file:/C:/SDK/android-sdk-windows/android-sdk-windows/extras/android/m2repository" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="C:\SDK\android-sdk-windows\android-sdk-windows\extras\google\m2repository" />
+      <option name="name" value="C:\SDK\android-sdk-windows\android-sdk-windows\extras\google\m2repository" />
+      <option name="url" value="file:/C:/SDK/android-sdk-windows/android-sdk-windows/extras/google/m2repository/" />
+    </remote-repository>
   </component>
 </project>
