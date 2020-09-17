@@ -3,11 +3,9 @@ package com.jack.aopdemo;
 import android.app.Application;
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.jack.aspaop.AspAop;
-import com.jack.aspaop.DemotionCallback;
-
-import org.aspectj.lang.reflect.MethodSignature;
 
 /**
  * @author jack
@@ -25,11 +23,18 @@ public class App extends Application {
         super.onCreate();
         context = this;
         AspAop.init().setMemoryLevel(3);
-        AspAop.init().addCallback(new DemotionCallback() {
-            @Override
-            public void demotion(MethodSignature signature, Object[] args) {
-                Log.e("JACK", "demotion"+Thread.currentThread().getName());
+        AspAop.init().setDemotionCallback((signature, args) -> Log.e("JACK", "demotion" + Thread.currentThread().getName()));
+        AspAop.init().setInterceptorCallback((key, methodName) -> {
+            if (key.equals("needLogin")) {
+                Toast.makeText(context, "请去登录！", Toast.LENGTH_SHORT).show();
+                //拦截
+                return true;
             }
+            //放行
+            return false;
+        });
+        AspAop.init().setDelayCallback((key, result, throwable) -> {
+            Log.e("JACK", "delay:" + key + result + throwable);
         });
     }
 }

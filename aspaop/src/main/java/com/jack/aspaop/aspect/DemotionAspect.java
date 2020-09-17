@@ -1,7 +1,5 @@
 package com.jack.aspaop.aspect;
 
-import android.util.Log;
-
 import com.jack.aspaop.AspAop;
 import com.jack.aspaop.annotation.NeedDemotion;
 
@@ -20,7 +18,6 @@ import org.aspectj.lang.reflect.MethodSignature;
  */
 @Aspect
 public class DemotionAspect {
-    private static final String TAG = "DemotionAspect";
     /**
      * "execution("//执行语句
      * "@com.jack.aspaop.annotation.NeedDemotion" //注解筛选
@@ -28,8 +25,8 @@ public class DemotionAspect {
      * "*"  //方法名,*为任意方法名
      * "(..)" //方法参数,'..'为任意个任意类型参数
      * ")" +
-     * " && " +//并集
-     * "@annotation(needDemotion)"//注解筛选,这里主要用于下面方法的'NeedLogin'参数获取
+     * " && " 交集  " ,|| "并集
+     * "@annotation(needDemotion)"//注解筛选,这里主要用于下面方法的'needDemotion'参数获取
      */
     private static final String POINTCUT_METHOD =
             "execution(@com.jack.aspaop.annotation.NeedDemotion * *(..))";
@@ -54,13 +51,8 @@ public class DemotionAspect {
         }
         //如果当前手机等级小于等于规定的降级等级不执行这段代码
         if (AspAop.init().getMemoryLevel() <= needDemotion.value()) {
-            //类名
-            String className = methodSignature.getDeclaringTypeName();
-            //方法名
-            String methodName = methodSignature.getName();
-            Log.w(TAG, String.format("%s的%s方法被降级了，不执行!", className, methodName));
-            if (AspAop.init().getCallback() != null) {
-                AspAop.init().getCallback().demotion(methodSignature,joinPoint.getArgs());
+            if (AspAop.init().getDemotionCallback() != null) {
+                AspAop.init().getDemotionCallback().demotion(methodSignature,joinPoint.getArgs());
             }
             return null;
         } else {

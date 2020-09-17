@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.jack.aspaop.annotation.DurationLog;
 import com.jack.aspaop.annotation.NeedDemotion;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,10 +22,13 @@ public class MainActivity extends AppCompatActivity {
         return is;
     }
 
+    @DurationLog
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        test(1);
+        test(1, 2);
     }
 
     public void click(View view) {
@@ -42,10 +46,9 @@ public class MainActivity extends AppCompatActivity {
         test1();
     }
 
-    @SuppressLint("SupportAnnotationUsage")
-    @NeedDemotion(NeedDemotion.LEVEL_6)
-    private void test1() {
-        Toast.makeText(this, "点击了我", Toast.LENGTH_SHORT).show();
+    private boolean test1() {
+        new person();
+        return false;
     }
 
     public void click2(View view) {
@@ -58,5 +61,19 @@ public class MainActivity extends AppCompatActivity {
 
     public void click3(View view) {
         startActivity(new Intent(this, MainActivity2.class));
+    }
+
+    @DurationLog
+    public void test(int i) {
+        int level6 = NeedDemotion.LEVEL_6;
+        Log.e("JACK", level6 + "");
+        Reflection.setStaticFieldValue(NeedDemotion.class, "LEVEL_6", 1);
+        int level61 = NeedDemotion.LEVEL_6;
+        Log.e("JACK", level61 + "");
+    }
+
+    public void test(int i, int b) {
+        new person();
+        new person(1);
     }
 }
