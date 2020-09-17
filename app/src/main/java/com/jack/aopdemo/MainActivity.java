@@ -9,13 +9,13 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.jack.aspaop.annotation.DurationLog;
+import com.jack.aspaop.annotation.Interceptor;
 import com.jack.aspaop.annotation.NeedDemotion;
 
 public class MainActivity extends AppCompatActivity {
 
-    @SuppressLint("SupportAnnotationUsage")
     @NeedDemotion(NeedDemotion.LEVEL_6)
-    private static boolean test(int i, boolean flag) {
+    private boolean test(int i, boolean flag) {
         boolean is = true;
         Toast.makeText(App.getContext(), "点击了我", Toast.LENGTH_SHORT).show();
         is = false;
@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         Log.e("JACK", level61 + "");
     }
 
+    @Interceptor
     public void click3(View view) {
         startActivity(new Intent(this, MainActivity2.class));
     }
