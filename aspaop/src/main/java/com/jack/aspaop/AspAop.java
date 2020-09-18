@@ -19,6 +19,7 @@ import com.jack.aspaop.callback.InterceptorCallback;
  */
 public class AspAop {
     public static final int DEBUG = 1;
+    public static final int RELEASE = 2;
     public Handler handler;
     private DemotionCallback demotionCallback;
     private InterceptorCallback interceptorCallback;
