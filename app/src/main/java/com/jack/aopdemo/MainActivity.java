@@ -13,7 +13,9 @@ import com.jack.aspaop.annotation.Interceptor;
 import com.jack.aspaop.annotation.NeedDemotion;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
 
+    @SuppressLint("SupportAnnotationUsage")
     @NeedDemotion(NeedDemotion.LEVEL_6)
     private boolean test(int i, boolean flag) {
         boolean is = true;
@@ -76,5 +78,24 @@ public class MainActivity extends AppCompatActivity {
     public void test(int i, int b) {
         new person();
         new person(1);
+    }
+
+
+    private void AfterThrowingTest() {
+        try {
+            View v = null;
+            v.setVisibility(View.VISIBLE);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void click4(View view) {
+        try {
+            AfterThrowingTest();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
