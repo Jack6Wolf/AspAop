@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 import com.jack.aspaop.annotation.NeedDemotion;
+import com.jack.aspaop.callback.CatchCallback;
 import com.jack.aspaop.callback.DelayCallback;
 import com.jack.aspaop.callback.DemotionCallback;
 import com.jack.aspaop.callback.InterceptorCallback;
@@ -24,6 +25,7 @@ public class AspAop {
     private DemotionCallback demotionCallback;
     private InterceptorCallback interceptorCallback;
     private DelayCallback delayCallback;
+    private CatchCallback catchCallback;
     private int level = NeedDemotion.DEFAULT;
     private int buildType = DEBUG;
 
@@ -34,6 +36,14 @@ public class AspAop {
 
     public static AspAop init() {
         return SingletonInstance.INSTANCE;
+    }
+
+    public CatchCallback getCatchCallback() {
+        return catchCallback;
+    }
+
+    public void setCatchCallback(CatchCallback catchCallback) {
+        this.catchCallback = catchCallback;
     }
 
     public DelayCallback getDelayCallback() {

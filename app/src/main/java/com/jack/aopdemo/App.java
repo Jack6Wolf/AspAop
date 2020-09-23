@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.jack.aspaop.AspAop;
+import com.jack.aspaop.callback.CatchCallback;
 import com.jack.aspaop.callback.DelayCallback;
 import com.jack.aspaop.callback.InterceptorCallback;
 
@@ -44,6 +45,17 @@ public class App extends Application {
             @Override
             public void taskResult(String key, @Nullable Object result, @Nullable Throwable throwable) {
                 Log.e("JACK", "delay:" + key + result + throwable);
+            }
+        });
+
+        AspAop.init().setCatchCallback(new CatchCallback() {
+            @Override
+            public boolean capture(@NonNull String key, Throwable throwable) {
+                if (key.equals("click")) {
+                    Log.e("JACK", "capture:" + throwable.getMessage());
+                    return true;
+                }
+                return false;
             }
         });
     }

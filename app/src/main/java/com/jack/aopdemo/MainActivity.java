@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.jack.aspaop.annotation.Catch;
 import com.jack.aspaop.annotation.DurationLog;
 import com.jack.aspaop.annotation.Interceptor;
 import com.jack.aspaop.annotation.NeedDemotion;
@@ -97,5 +98,16 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    @Catch("click")
+    public void click5(View view) {
+        testCatch();
+    }
+
+    private void testCatch() {
+        View v = null;
+        v.setVisibility(View.VISIBLE);
     }
 }
